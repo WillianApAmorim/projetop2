@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -6,21 +6,37 @@ import {
   Text,
   Pressable,
   StyleSheet,
+  Image,
 } from "react-native";
+import { buscarImagemGato } from "./Api";
 
 export default function App() {
+  const [urlImagemGato, setUrlImagemGato] = useState<string | null>(null);
+
+  const obterImagemGato = async () => {
+    const urlImagem = await buscarImagemGato();
+    setUrlImagemGato(urlImagem);
+  };
+
   return (
     <SafeAreaView style={estilos.container}>
       <View style={estilos.conteinerImagens}>
-        <ScrollView
-          contentContainerStyle={estilos.conteudoScrollView}
-        ></ScrollView>
+        <ScrollView contentContainerStyle={estilos.conteudoScrollView}>
+          {urlImagemGato ? (
+            <Image source={{ uri: urlImagemGato }} style={estilos.imagem} />
+          ) : (
+            <Text style={estilos.textoCentralizado}>
+              Fotos de gatos aparecerão aqui
+            </Text>
+          )}
+        </ScrollView>
       </View>
       <Pressable
         style={({ pressed }) => [
           estilos.botao,
           { backgroundColor: pressed ? "#634747" : "#776a6a" },
         ]}
+        onPress={obterImagemGato}
       >
         <Text style={estilos.textoBotao}>Obter Fotos</Text>
       </Pressable>
