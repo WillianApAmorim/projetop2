@@ -1,0 +1,9 @@
+# Projeto p2 - Programação para dispositivos móveis
+
+## Integrantes
+
+JONATHAN HIROYUKI YANAGITA - Ra: 2040482213034
+
+SARA RAMOS DE CAMPOS - Ra: 2040482213033
+
+WILLIAN APARECIDO AMORIM - Ra: 2040482213011
